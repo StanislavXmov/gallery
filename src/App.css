@@ -1,0 +1,30 @@
+body {
+  margin: 32px auto !important;
+  max-width: 1480px;
+  background-color: #333333;
+
+  font-family: monospace;
+}
+
+.aboutTitle {
+  /* color: #F051AE; */
+  color: #C4FF79;
+  text-shadow: -2px -1px #F051AE;
+}
+
+.image {
+  border: 2px solid #C4FF79;
+  box-shadow: -2px -1px #F051AE;
+}
+
+.button {
+  border: 2px solid #C4FF79;
+  box-shadow: -2px -1px #F051AE;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform;
+}
+
+.button:hover {
+  box-shadow: -4px -4px #F051AE;
+}
