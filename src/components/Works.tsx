@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { MutableRefObject, useRef, useState } from "react";
+import { useInfinityScroll } from "../hooks/useInfinityScroll";
 
 const images = [
   '/images/1.jpg',
@@ -53,32 +54,35 @@ const url = '.';
 
 const Works = () => {
   const [counter, setCounter] = useState(6);
-  const [isMore, setIsMore] = useState(true);
+
+  const wrapperRef = useRef() as MutableRefObject<HTMLElement>;
+  const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   const getMore = () => {
     if (counter + 6 <= images.length) {
       setCounter(prev => prev + 6);
     } else {
-      setCounter(45);
-      setIsMore(false);
+      setCounter(images.length);
     }
   }
+
+  useInfinityScroll({
+    triggerRef,
+    wrapperRef,
+    callback: getMore,
+  });
 
   return (
     <>
       <h2 className="aboutTitle ml-12 mb-8 text-4xl">Works</h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-8 px-8">
+      <main ref={wrapperRef} className="border rounded-2xl py-6 overflow-y-auto h-[640px] grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-8 px-8">
         {new Array(counter).fill(null).map((_, i) => (
           <div key={i} className="flex justify-center">
             <img src={`${url}${'/test.png'}`} className="image object-cover h-96 rounded-2xl hover:scale-110 transition duration-500 cursor-pointer" />
           </div>
         ))}
-      </div>
-      {isMore && (
-        <div className="flex justify-center mt-8">
-          <button className="button px-4 py-2 rounded-2xl text-gray-200 uppercase text-xl hover:text-gray-100" onClick={getMore}>Load more</button>
-        </div>
-      )}
+        <div className="triger" ref={triggerRef} />
+      </main>
     </>
   )
 }
