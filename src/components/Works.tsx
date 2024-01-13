@@ -48,7 +48,7 @@ const images = [
   '/images/45.jpg',
 ];
 
-const url = './';
+const url = '.';
 // images[i]
 
 const Works = () => {
@@ -70,7 +70,7 @@ const Works = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-8 px-8">
         {new Array(counter).fill(null).map((_, i) => (
           <div key={i} className="flex justify-center">
-            <img src={`${url}${'test.png'}`} className="image object-cover h-96 rounded-2xl hover:scale-110 transition duration-500 cursor-pointer" />
+            <img src={`${url}${'/test.png'}`} className="image object-cover h-96 rounded-2xl hover:scale-110 transition duration-500 cursor-pointer" />
           </div>
         ))}
       </div>
